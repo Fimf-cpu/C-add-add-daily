@@ -1,0 +1,161 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+using namespace std;
+//global constansts
+const int max_incorrect = 6;
+char incorrect[max_incorrect];
+int numincorrect = 0;
+int misses = 0;
+
+// function decs
+void hangman();
+void display(string guessedword);
+string processguess(char guess, string word, string guesseword);
+
+int main(){
+	string wordlist[] = { "chest", "reaper", "flameheart", "gold", "skeleton", "kraken", "megalodon", "thieves"};
+	srand(time(0));
+	string word = wordlist[rand() % 8];
+	string guessedword(word.length(), '_');
+
+	cout << "Welcome to Hangman\n";
+	//game loop
+	while (misses < max_incorrect && guessedword != word) {
+		display(guessedword);
+		cout << "Enter your guess: ";
+		char guess;
+		cin >> guess;
+
+		string oldguessedword = guessedword;
+		guessedword = processguess(guess, word, guessedword);
+
+		if (guessedword == oldguessedword) {
+			cout << "Oops ! that letter isn't in there!\n";
+		}
+		else {
+			cout << "good guess!\n";
+		}
+	}
+	if (guessedword == word) {
+		cout << "congratulations! you guessed the word: " << word << "\n";
+	}
+	else {
+		cout << "game over! the word was: " << word << "\n";
+	}
+
+	return 0;
+}
+
+// function defs
+void hangman() {
+	cout << "/n";
+	switch (misses) {
+	case 0:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	case 1:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << " o   |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	case 2:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << " o   |\n";
+		cout << " |   |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	case 3:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << " o   |\n";
+		cout << " |\  |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	case 4:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << " o   |\n";
+		cout << "/|\  |\n";
+		cout << "     |\n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	case 5:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << " o   |\n";
+		cout << "/|\  |\n";
+		cout << "  \  | \n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	case 6:
+		cout << " +---+\n";
+		cout << " |   |\n";
+		cout << " o   |\n";
+		cout << "/|\  |\n";
+		cout << "/ \  |\n";
+		cout << "     |\n";
+		cout << "--------\n";
+		break;
+	}
+	
+
+}
+
+void display(string guessedword) {
+	cout << "\n Word: ";
+	for (int i = 0; i < guessedword.length(); i++) {
+		cout << guessedword[i] << ' ';
+	}
+	cout << "\n Incorrect gusses: ";
+	for (int j = 0; j < 6; j++) {
+		cout << incorrect[j] << ' ';
+	}
+	cout << "\n Misses left: " << max_incorrect - misses << "\n";
+	hangman();
+}
+string processguess(char guess, string word, string guesseword) {
+	bool iscorrect = false;
+	for (int i = 0; i < word.length(); i++) {
+		if (word[i] == guess && guesseword[i] == '_') {
+			guesseword[i] = guess;
+			iscorrect = true;
+		}
+	}
+
+	if (!iscorrect) {
+		bool alreadyguessed = false;
+
+		for (int j = 0; j < numincorrect; j++) {
+			if (incorrect[j] == guess) {
+				alreadyguessed = true;
+				break;
+			}
+		}
+
+		if (!alreadyguessed) {
+			incorrect[numincorrect++] = guess;
+			misses += 1;
+		}
+	}
+	return guesseword;
+}
