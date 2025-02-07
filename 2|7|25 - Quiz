@@ -1,0 +1,58 @@
+/ Dean.k / 2|7|25
+#include<iostream>
+using namespace std;
+// dects
+float PyramidVolume(int l, int w, int h);
+bool isPotato(string thing);
+void HiChew();
+// struct
+struct plant {
+	string name;
+	string type;
+	int water_level;
+	bool alive = 0;
+};
+
+int main() {
+	cout << "the pyramid has a volume of " << PyramidVolume(6, 5, 4) << endl;
+	cout << isPotato("potato") << endl;
+	HiChew();
+	HiChew();
+	HiChew();
+
+	plant dooburt = { "dooburt", "rose", 6, true };
+
+	cout << "plant one: " << dooburt.name << "plant type: " << dooburt.type << "water level: " << dooburt.water_level << " alive:" << dooburt.alive << endl;
+
+	dooburt.alive = false;
+	dooburt.water_level = 3;
+
+	cout << "plant one: " << dooburt.name << "plant type: " << dooburt.type << "water level: " << dooburt.water_level << " alive:" << dooburt.alive << endl;
+}
+//defs
+float PyramidVolume(int l, int w, int h) {
+	float v = l * w * h / 3;
+	return v;
+}
+
+bool isPotato(string thing) {
+	bool Potato = false;
+	if (thing == "potato") {
+		Potato = true;
+	}
+	return Potato;
+}
+
+void HiChew() {
+	srand(time(NULL));
+	int num = rand() % 100 + 1;
+
+	if (num < 25)
+		cout << "you got kiwi" << endl;
+	else if (num < 50)
+		cout << "you got mango" << endl;
+	else if (num < 75)
+		cout << "you got pineapple" << endl;
+	else
+		cout << "you got dragonfruit" << endl;
+}
