@@ -1,0 +1,47 @@
+// Dean.k and michael M/ 2|7|25
+#include<iostream>
+#include<stdlib.h>
+#include<time.h>
+using namespace std;
+
+int main() {
+	srand(time(NULL));
+	int goal = rand() % 100 + 1;
+	int guess = 0;
+	int numguess;
+	int difference;
+	cout << "I've thought of a number, 1-100." << endl;
+	while (guess != goal) {
+		cin >> guess;
+		cout << "your guess is : "<< guess << endl;
+		if (guess > 100) {
+			cout << guess << "not is to 1-100" << endl;
+		}
+		else if (guess < 1) {
+			cout << guess << "not is to 1-100" << endl;
+		}
+		else if (guess != goal) {
+			difference = goal - guess;
+			if (difference < 0) {
+				difference = difference * -1;
+			}
+			if (difference == 1) {
+				cout << guess << "is white hot" << endl;
+			}
+			else if (difference <= 5) {
+				cout << guess << "is burning hot" << endl;
+			}
+			else if (difference <= 15) {
+				cout << guess << "is quite hot" << endl;
+			}
+			else if (difference <= 55) {
+				cout << guess << "is cold" << endl;
+			}
+			else {
+				cout << guess << "is frozen" << endl;
+			}
+		}
+
+	}
+
+}
