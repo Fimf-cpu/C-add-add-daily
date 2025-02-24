@@ -1,0 +1,71 @@
+// Dean.k/ 2|24|25
+#include <iostream>
+using namespace std;
+
+// The Car class definition
+class Car {
+public:
+    // Attributes (variables) of a car
+    string color;
+    int year;
+    string make;
+
+    // Constructor to initialize the Car object
+    Car(string c, int y, string m) {
+        color = c;  // Set the color of the car
+        year = y;   // Set the year of the car
+        make = m;   // Set the make of the car
+    }
+
+    // Function to display the details of the car
+    void displayDetails() {
+        cout << "Car details: " << endl;
+        cout << "Color: " << color << endl;
+        cout << "Year: " << year << endl;
+        cout << "Make: " << make << endl << endl;
+    }
+};
+
+class bike {
+public:
+    // Attributes (variables) of a bike
+    string colors;
+    string type;
+    char frame;
+
+    // Constructor to initialize the Car object
+    bike(string s, string t, char f) {
+        colors = s;  
+        type = t;   
+        frame = f;   
+    }
+
+    // Function to display the details of the car
+    void displayDetails() {
+        cout << "bike details: " << endl;
+        cout << "Color: " << colors << endl;
+        cout << "type: " << type << endl;
+        cout << "frame: " << frame << endl << endl;
+    }
+};
+
+int main() {
+    // Creating an object of Car
+    Car myCar("Red", 2021, "Toyota");
+
+    // Creating another object of Car
+    Car mySecondCar("Blue", 2019, "Ford");
+
+    Car myThirdCar("Gray", 2002, "honda");
+
+    bike mybike("red", "Mountain", 'M');
+
+    // Display details of cars
+    myCar.displayDetails();
+    mySecondCar.displayDetails();
+    myThirdCar.displayDetails();
+
+    mybike.displayDetails();
+
+    return 0;
+}
