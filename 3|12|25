@@ -1,0 +1,63 @@
+// Dean.k/ 3|12|25
+#include <iostream>
+using namespace std;
+
+void multiple();
+void addeven();
+void calculator();
+
+int main() {
+	multiple();
+	addeven();
+	calculator();
+}
+
+void multiple() {
+	int num;
+	cout << "enter a integer: ";
+	cin >> num;
+	if (num % 5 == 0) {
+		cout << num << " is a multiple of 5" << endl;
+	}
+	else {
+		cout << num << " is not a multiple of 5" << endl;
+	}
+}
+void addeven() {
+	int n;
+	int sum = 0;
+	cout << "enter a positve integer: ";
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		if (i % 2 == 0) {
+			sum += i;
+		}
+	}
+	cout << sum << endl;
+}
+void calculator() {
+	double num1, num2;
+	char op;
+	cout << "enter two numbers and an operator (+, -, *, or /): ";
+	cin >> num1 >> num2 >> op;
+	if (op == '+') {
+		cout << "result: " << num1 + num2;
+	}
+	else if (op == '-') {
+		cout << "result: " << num1 - num2;
+	}
+	else if (op == '*') {
+		cout << "result: " << num1 * num2;
+	}
+	else if (op == '/') {
+		if (num2 == 0) {
+			cout << "can't divide by Zero" << endl;
+		}
+		else {
+			cout << "result: " << num1 / num2;
+		}
+	}
+	else {
+		cout << "invalid operator";
+	}
+}
