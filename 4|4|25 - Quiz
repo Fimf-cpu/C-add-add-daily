@@ -1,0 +1,39 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+void textcolor(int val);
+
+int main() {
+	srand(time(0));
+	char fruit;
+
+	cout << "what fruit do you want a, b, or c" << endl;
+	cin >> fruit;
+
+	if (fruit == 'a') {
+		cout << "ok, here's your apple" << endl;
+	}
+	else if (fruit == 'b') {
+		cout << "One banana coming right up!" << endl;
+	}
+	else if (fruit == 'c') {
+		cout << "A jucy cantalope for you!" << endl;
+	}
+
+	int time = rand() % 50 + 1;
+
+	for (time == 0; time--;) {
+		cout << "respawning in... " << time << endl;
+	}
+
+	int num;
+	
+	cout << "chose your text color" << endl;
+	cin >> num;
+	textcolor(num);
+}
+
+void textcolor(int val) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), val);
+}
